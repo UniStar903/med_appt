@@ -1,13 +1,24 @@
 // Navbar.jsx
 import React, { useState } from "react";
-import { Link } from "react-router-dom";   // ✅ Import Link
+import { Link, useNavigate } from "react-router-dom";   // ✅ Import useNavigate
 import "./Navbar.css";
 
 function Navbar() {
   const [isActive, setIsActive] = useState(true);
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setIsActive(!isActive);
+  };
+
+  // ✅ Check if user is logged in
+  const isLoggedIn = sessionStorage.getItem("auth-token");
+
+  // ✅ Logout function
+  const handleLogout = () => {
+    sessionStorage.clear(); // remove all stored user data
+    navigate("/login");     // redirect to login page
+    window.location.reload(); // refresh to update Navbar
   };
 
   return (
@@ -16,7 +27,6 @@ function Navbar() {
       <div className="nav__logo">
         <Link to="/">
           StayHealthy
-          {/* Doctor SVG Icon */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="26"
@@ -48,16 +58,26 @@ function Navbar() {
         <li className="link">
           <Link to="/appointments">Appointments</Link>
         </li>
-        <li className="link">
-          <Link to="/signup">
-            <button className="btn1">Sign Up</button>
-          </Link>
-        </li>
-        <li className="link">
-          <Link to="/login">
-            <button className="btn1">Login</button>
-          </Link>
-        </li>
+
+        {/* ✅ Conditional rendering */}
+        {isLoggedIn ? (
+          <li className="link">
+            <button className="btn1" onClick={handleLogout}>Logout</button>
+          </li>
+        ) : (
+          <>
+            <li className="link">
+              <Link to="/signup">
+                <button className="btn1">Sign Up</button>
+              </Link>
+            </li>
+            <li className="link">
+              <Link to="/login">
+                <button className="btn1">Login</button>
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );

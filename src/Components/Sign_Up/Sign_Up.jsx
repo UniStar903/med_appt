@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Sign_Up.css";
+import { useNavigate } from "react-router-dom";
+import { API_URL } from "../../../config"; // Make sure config.js exports API_URL
 
 const Sign_Up = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +13,8 @@ const Sign_Up = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [showerr, setShowerr] = useState("");
+  const navigate = useNavigate();
 
   const validate = () => {
     let tempErrors = {};
@@ -28,17 +32,45 @@ const Sign_Up = () => {
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const register = async (e) => {
     e.preventDefault();
-    if (validate()) {
-      alert("Sign Up Successful!");
+    if (!validate()) return;
+
+    try {
+      const response = await fetch(`${API_URL}/api/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const json = await response.json();
+
+      if (json.authtoken) {
+        // Store user data in session storage
+        sessionStorage.setItem("auth-token", json.authtoken);
+        sessionStorage.setItem("name", formData.name);
+        sessionStorage.setItem("phone", formData.phone);
+        sessionStorage.setItem("email", formData.email);
+
+        // Redirect to home
+        navigate("/");
+        window.location.reload();
+      } else {
+        if (json.errors) {
+          setShowerr(json.errors[0].msg);
+        } else {
+          setShowerr(json.error);
+        }
+      }
+    } catch (err) {
+      setShowerr("Server error. Please try again later.");
     }
   };
 
   return (
     <div className="signup-container">
       <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={register}>
         <label>Role</label>
         <select
           value={formData.role}
@@ -83,6 +115,8 @@ const Sign_Up = () => {
           }
         />
         {errors.password && <p className="error">{errors.password}</p>}
+
+        {showerr && <p className="error">{showerr}</p>}
 
         <button type="submit">Submit</button>
         <button type="reset" onClick={() => setFormData({})}>
