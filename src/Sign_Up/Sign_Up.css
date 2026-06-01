@@ -1,0 +1,124 @@
+/* Styles for the container element */
+.container {
+    max-width: 900px; /* Set maximum width for the container */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 40px; /* Add padding inside the container */
+    margin-top: 10%; /* Set top margin as a percentage of the viewport height */
+    overflow: hidden; /* Hide any overflowing content */
+}
+
+/* Styles for the password visibility icon */
+.password-visibility {
+    position: relative; /* Position relative to input field */
+    top: -39px; /* Move the icon up */
+    left: 92%; /* Align to the right side */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 17px; /* Icon size */
+}
+
+/* Grid layout for signup form */
+.signup-grid {
+    display: grid;
+    grid-template-columns: 0.1fr 1.5fr 8fr;
+    grid-gap: 10px;
+}
+
+/* Main signup text */
+.signup-text {
+    margin-top: 30px;
+    grid-column: 1 / 4;
+    text-align: center;
+}
+
+/* Additional signup text */
+.signup-text1 {
+    grid-column: -1 / 3;
+    text-align: right;
+}
+
+.signup-text1 span {
+    color: #3c79a7;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Signup form section */
+.signup-form {
+    grid-column: 2 / 4;
+}
+
+/* Overall signup container */
+.signup {
+    flex: 1;
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Signup heading */
+.signup h1 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #3c79a7;
+    letter-spacing: .1em;
+}
+
+/* Role text */
+.signup-role {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Form groups */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Input fields */
+.form-control {
+    width: 40%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Button group */
+.btn-group {
+    margin-top: .0001px;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Primary button */
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Danger button */
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .form-control {
+        width: 100%; /* Full width on smaller screens */
+    }
+}

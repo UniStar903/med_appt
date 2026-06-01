@@ -1,0 +1,62 @@
+/* Styles for the main container */
+.container {
+    max-width: 900px; /* Maximum width of the container */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 40px; /* Padding inside the container */
+    margin-top: 10%; /* Top margin of 10% */
+}
+
+/* Styles for form groups */
+.form-group {
+    margin-bottom: 20px; /* Bottom margin for spacing between form groups */
+}
+
+/* Styles for form group labels */
+.form-group label {
+    display: block; /* Make labels display as block elements */
+    margin-bottom: 5px; /* Bottom margin for spacing below labels */
+    font-weight: bold; /* Bold text for labels */
+}
+
+/* Styles for form controls */
+.form-control {
+    width: 40%; /* Width of form controls */
+    padding: 8px; /* Padding inside form controls */
+    font-size: 16px; /* Font size of form controls */
+    border: 1px solid #ccc; /* Border around form controls */
+    border-radius: 4px; /* Border radius for rounded corners */
+}
+
+/* Styles for button groups */
+.btn-group {
+    margin-top: .0001px; /* Top margin for spacing above button groups */
+    margin-bottom: 20px; /* Bottom margin for spacing below button groups */
+}
+
+/* Styles for buttons */
+.btn {
+    padding: 10px 20px; /* Padding inside buttons */
+    font-size: 16px; /* Font size of buttons */
+    border: none; /* No border for buttons */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Styles for primary buttons */
+.btn-primary {
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text */
+}
+
+/* Styles for danger (red) buttons */
+.btn-danger {
+    background-color: #dc3545; /* Red background */
+    color: #fff; /* White text */
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .form-control {
+        width: 100%; /* Full width on smaller screens */
+    }
+}
