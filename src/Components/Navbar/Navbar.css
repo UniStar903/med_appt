@@ -10,12 +10,11 @@ nav {
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: inline-block;   /* ✅ Changed from flex to inline-block */
     background-color: #fff;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     z-index: 1000;
+    text-align: center;      /* ✅ Ensures inline-block items align centrally */
 }
 
 /* Logo styling */
@@ -24,9 +23,9 @@ nav {
     font-weight: 600;
     color: #0d213f;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    display: inline-block;   /* ✅ Inline-block for logo */
+    vertical-align: middle;
+    margin-right: 2rem;
 }
 
 .nav__logo span {
@@ -38,16 +37,21 @@ nav {
     display: none;
     font-size: 2rem;
     cursor: pointer;
+    vertical-align: middle;
 }
 
 /* Navigation links */
 .nav__links {
     list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 1rem;
-    font-weight: 500;
+    display: inline-block;   /* ✅ Inline-block for links */
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+}
+
+.nav__links .link {
+    display: inline-block;   /* ✅ Each link inline-block */
+    margin: 0 0.5rem;
 }
 
 .link a {
@@ -80,11 +84,11 @@ nav {
 /* Responsive design */
 @media (max-width: 768px) {
     .nav__icon {
-        display: block;
+        display: inline-block; /* ✅ Show hamburger in mobile */
     }
 
     .nav__links {
-        display: none;
+        display: none; /* Hidden by default */
         flex-direction: column;
         align-items: center;
         gap: 0.8rem;
@@ -100,7 +104,7 @@ nav {
     }
 
     .nav__links.active {
-        display: flex;
+        display: flex; /* ✅ Flex for dropdown in mobile */
     }
 }
 

@@ -1,19 +1,19 @@
 /* Styles for the container element */
 .container {
-    max-width: 900px; /* Set maximum width for the container */
-    margin: 0 auto; /* Center the container horizontally */
-    padding: 40px; /* Add padding inside the container */
-    margin-top: 10%; /* Set top margin as a percentage of the viewport height */
-    overflow: hidden; /* Hide any overflowing content */
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+    margin-top: 10%;
+    overflow: hidden;
 }
 
-/* Styles for the password visibility icon */
+/* Password visibility icon */
 .password-visibility {
-    position: relative; /* Position relative to input field */
-    top: -39px; /* Move the icon up */
-    left: 92%; /* Align to the right side */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-size: 17px; /* Icon size */
+    position: relative;
+    top: -39px;
+    left: 92%;
+    cursor: pointer;
+    font-size: 17px;
 }
 
 /* Grid layout for signup form */
@@ -91,7 +91,7 @@
 
 /* Button group */
 .btn-group {
-    margin-top: .0001px;
+    margin-top: 10px;
     margin-bottom: 20px;
 }
 
@@ -116,9 +116,15 @@
     color: #fff;
 }
 
+/* Error messages */
+.error {
+    color: red;
+    font-size: 0.8rem;
+}
+
 /* Responsive tweaks */
 @media (max-width: 768px) {
     .form-control {
-        width: 100%; /* Full width on smaller screens */
+        width: 100%;
     }
 }
