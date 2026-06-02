@@ -1,0 +1,74 @@
+.finddoctor {
+    overflow: hidden;
+  }
+  
+  .home-search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .doctor-search-box {
+    display: flex;
+    align-items: center;
+    width: 430px;
+    position: relative;
+    margin-top: 25px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 -1px 0 0 inset;
+    border-radius: 5px;
+  }
+  
+  .search-doctor-input-box {
+    height: 40px;
+    width: 100%;
+    padding: 6px 20px 5px 10px;
+    outline: none;
+    font-size: 14px;
+    border: 1px solid #3b3a3a;
+    border-radius: 5px 0 0 5px;
+  }
+  
+  .findiconimg {
+    width: 40px;
+    background-color: #efefef;
+    height: 40px;
+    border: 1px solid #3b3a3a;
+  }
+  
+  .search-doctor-input-results {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+    border: 1px solid #555;
+    background-color: #fff;
+  }
+  
+  .search-doctor-result-item {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    column-gap: 14px;
+    cursor: pointer;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .search-doctor-result-item:hover {
+    background-color: #f0f0f5;
+  }
+  
+  .search-doctor-result-item > span:nth-of-type(2) {
+    font-size: 14px;
+    color: #414146;
+  }
+  
+  .search-doctor-result-item > span:nth-of-type(3) {
+    font-size: 11px;
+    color: #787887;
+    text-transform: uppercase;
+    margin-left: auto;
+  }
+  
