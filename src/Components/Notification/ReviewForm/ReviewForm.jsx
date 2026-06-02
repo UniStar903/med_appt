@@ -1,62 +1,116 @@
-// ReviewForm.jsx
 import React, { useState } from "react";
 import "./ReviewForm.css";
 
-const ReviewForm = () => {
+// Function component for patient feedback
+function ReviewForm() {
+  // State variables
   const [showForm, setShowForm] = useState(false);
-  const [review, setReview] = useState("");
-  const [rating, setRating] = useState(0);
+  const [submittedMessage, setSubmittedMessage] = useState(null);
+  const [showWarning, setShowWarning] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    review: "",
+    rating: 0,
+  });
 
+  // Handle button click to open form
+  const handleButtonClick = () => {
+    setShowForm(true);
+  };
+
+  // Handle input changes
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Handle rating selection
+  const handleRatingSelect = (ratingValue) => {
+    setFormData({ ...formData, rating: ratingValue });
+  };
+
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Thank you for your feedback!\nRating: ${rating}\nReview: ${review}`);
-    setShowForm(false);
-    setReview("");
-    setRating(0);
+    if (formData.name && formData.review && formData.rating > 0) {
+      setSubmittedMessage(formData);
+      setShowWarning(false);
+      setIsSubmitted(true);
+      setShowForm(false);
+    } else {
+      setShowWarning(true);
+    }
   };
 
   return (
     <div className="review-container">
-      <h2 className="review-title">Consultation Feedback</h2>
-      <p className="review-description">
-        We value your experience! Please share your feedback about your consultation.
-      </p>
+      <h2 className="review-title">Provide Feedback</h2>
 
-      {!showForm ? (
-        <button className="review-btn" onClick={() => setShowForm(true)}>
-          Provide Feedback
+      {!showForm && !isSubmitted ? (
+        <button className="feedback-btn" onClick={handleButtonClick}>
+          Click Here
         </button>
-      ) : (
-        <form className="review-form" onSubmit={handleSubmit}>
-          <label>
-            Rating (1–5):
-            <input
-              type="number"
-              min="1"
-              max="5"
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-              required
-            />
-          </label>
+      ) : null}
 
-          <label>
-            Review:
-            <textarea
-              value={review}
-              onChange={(e) => setReview(e.target.value)}
-              placeholder="Share your thoughts..."
-              required
+      {showForm && (
+        <form className="review-form" onSubmit={handleSubmit}>
+          <h3>Give Your Feedback</h3>
+          {showWarning && <p className="warning">Please fill out all fields.</p>}
+
+          <div className="form-group">
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter your name"
             />
-          </label>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="review">Review:</label>
+            <textarea
+              id="review"
+              name="review"
+              value={formData.review}
+              onChange={handleChange}
+              placeholder="Write your feedback..."
+            />
+          </div>
+
+          <div className="form-group rating-group">
+            <label>Rating:</label>
+            <div className="stars">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <span
+                  key={star}
+                  className={`star ${formData.rating >= star ? "selected" : ""}`}
+                  onClick={() => handleRatingSelect(star)}
+                >
+                  ★
+                </span>
+              ))}
+            </div>
+          </div>
 
           <button type="submit" className="submit-btn">
-            Submit Feedback
+            Submit
           </button>
         </form>
       )}
+
+      {submittedMessage && (
+        <div className="submitted-section">
+          <h3>Submitted Feedback</h3>
+          <p><strong>Name:</strong> {submittedMessage.name}</p>
+          <p><strong>Review:</strong> {submittedMessage.review}</p>
+          <p><strong>Rating:</strong> {submittedMessage.rating} / 5</p>
+        </div>
+      )}
     </div>
   );
-};
+}
 
 export default ReviewForm;
