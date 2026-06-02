@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './DoctorCard.css';
+import AppointmentForm from '../AppointmentForm/AppointmentForm';
 
-const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
+const DoctorCard = ({ name, speciality, experience, ratings }) => {
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <div className="doctor-card-container">
       <div className="doctor-card-details-container">
@@ -18,13 +21,23 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
           <div className="doctor-card-detail-consultationfees">Ratings: {ratings}</div>
         </div>
 
-        {/* Step 6: Add Book Appointment button */}
         <div>
-          <button className="book-appointment-btn">
+          <button className="book-appointment-btn" onClick={() => setShowForm(!showForm)}>
             <div>Book Appointment</div>
             <div>No Booking Fee</div>
           </button>
         </div>
+
+        {showForm && (
+          <AppointmentForm
+            doctorName={name}
+            doctorSpeciality={speciality}
+            onSubmit={(data) => {
+              console.log('Appointment booked:', data);
+              setShowForm(false);
+            }}
+          />
+        )}
       </div>
     </div>
   );
